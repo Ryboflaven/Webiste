@@ -1,0 +1,382 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'AmericanRadar';
+    src: url('fonts/AmericanRadar-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    background: #000000;
+    color: #fff;
+    font-family: 'AmericanRadar', Arial, sans-serif;
+    padding-top: 0; /* Or a small value like 24px if you want a little space */
+}
+
+@keyframes slide {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+.images {
+    overflow: hidden;
+    padding: 20px 0;
+    white-space: nowrap;
+    position: relative;
+    width: 100vw;
+}
+
+.images:before,
+.images:after {
+    position: absolute;
+    top: 0;
+    width: 250px;
+    height: 100%;
+    content: "";
+    z-index: 2;
+    pointer-events: none;
+}
+
+.images:before {
+    left: 0;
+    background: linear-gradient(to left, rgba(255,255,255,0), #000);
+}
+
+.images:after {
+    right: 0;
+    background: linear-gradient(to right, rgba(255,255,255,0), #000);
+    transition: width 0.5s cubic-bezier(.4,0,.2,1);
+    width: 250px;
+}
+
+.images:hover .image-slide {
+    animation-play-state: paused;
+}
+
+.image-slide {
+    display: inline-block;
+    white-space: nowrap;
+    animation: slide linear infinite;
+    animation-duration: 55s; /* fallback */
+    animation-duration: var(--slide-duration, 55s);
+}
+
+.image-slide img {
+    width: 600px;
+    margin: 20px;
+    vertical-align: middle;
+}
+
+.slide-item {
+    display: inline-block;
+    text-align: center;
+    vertical-align: top;
+    position: relative; /* Needed for absolute positioning */
+}
+
+.caption {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 75px;
+    color: #fff;
+    font-size: 1.2em;
+    font-family: 'AmericanRadar', Arial, sans-serif;
+    line-height: 1.1;
+    padding: 24px 0 8px 0;
+    margin: 0;
+    z-index: 2;
+    border-radius: 0 0 16px 16px;
+    transition: background 0;
+    background: none;
+}
+
+.slide-item:hover .caption {
+    display: block;
+}
+
+/* Header Bar */
+.header-bar {
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background: #000000;
+    color: #fff;
+    padding: 20px 35px;
+    font-family: 'AmericanRadar', Arial, sans-serif;
+    font-size: 1.5em;
+    box-sizing: border-box;
+}
+
+.header-left {
+    font-weight: bold;
+    letter-spacing: 0.06em; /* Adjust this value as needed
+    /* Add padding if you want more space on the right */
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.header-right a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s;
+    padding: 0 25px;
+    font-weight: normal;
+    margin: 0;
+}
+
+.header-right a:hover {
+    color: #ffc3f8;
+}
+
+/* Gradient expansion for carousel */
+.images.expand-gradient:after {
+    width: 60vw;
+}
+
+/* Dropdown styles */
+.dropdown-parent {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background: transparent;
+    min-width: 180px;
+    box-shadow: none;
+    z-index: 200;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    border-radius: 0 0 8px 8px;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition:
+        opacity 0.5s cubic-bezier(.4,0,.2,1),
+        max-height 0.5s cubic-bezier(.4,0,.2,1);
+    pointer-events: none;
+}
+
+.dropdown-parent:hover .dropdown-menu,
+.dropdown-parent:focus-within .dropdown-menu {
+    opacity: 1;
+    max-height: 500px;
+    pointer-events: auto;
+}
+
+.dropdown-menu li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.dropdown-menu a {
+    display: block;
+    color: #fff;
+    padding: 0px 0;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+    font-size: 1em;
+    white-space: nowrap;
+}
+
+.dropdown-menu a:hover {
+    background: none;
+    color: #ff00ff; /* Match the header hover color */
+}
+
+/* Gradient expansion when dropdown is open (if you use JS to add .expand-gradient) */
+.dropdown-parent:hover ~ .images:after,
+.dropdown-parent:focus-within ~ .images:after {
+    width: 60vw;
+}
+
+.projects-grid,
+.projects-grid .project-caption {
+    color: #fff;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-parent {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background: transparent;
+    min-width: 180px;
+    box-shadow: none;
+    z-index: 200;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    border-radius: 0 0 8px 8px;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition:
+        opacity 0.5s cubic-bezier(.4,0,.2,1),
+        max-height 0.5s cubic-bezier(.4,0,.2,1);
+    pointer-events: none;
+}
+
+.dropdown-parent:hover .dropdown-menu,
+.dropdown-parent:focus-within .dropdown-menu {
+    opacity: 1;
+    max-height: 500px;
+    pointer-events: auto;
+}
+
+.dropdown-menu li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.dropdown-menu a {
+    display: block;
+    color: #fff;
+    padding: 12px 0;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+    font-size: 1em;
+    white-space: nowrap;
+}
+
+.dropdown-menu a:hover {
+    background: none;
+    color: #ff00ff; /* Match the header hover color */
+}
+
+/* Gradient expansion when dropdown is open (if you use JS to add .expand-gradient) */
+.dropdown-parent:hover ~ .images:after,
+.dropdown-parent:focus-within ~ .images:after {
+    width: 60vw;
+}
+
+.badgebook-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  max-width: 1200px;
+  margin: 25px auto;
+  padding-left: 1px; /* Only if you want to match the header */
+  padding-right: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.badge-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start; /* top aligned */
+  gap: 25px;              /* space between text and gif */
+}
+
+.badge-description {
+  flex: 1;
+  color: #fff;
+  font-family: 'AmericanRadar', Arial, sans-serif;
+  font-size: 1.1em;
+  max-width: 500px;
+  padding-left: 0;
+  margin-left: 0;
+  line-height: 1.5;
+  text-align: left;
+  background: none;
+  box-shadow: none;
+  border: none;
+  margin: 0;
+}
+
+.badge-featured {
+  width: 900px;         /* Make it larger */
+  height: 900px;
+  object-fit: cover;
+  border-radius: 100px;
+  display: block;
+  margin-left: auto;    /* Pushes the image as far right as possible */
+}
+
+.badge-images {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  width: 100%;
+}
+
+.badge-images img {
+  width: 600px;
+  height: 600px;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+
+.badge-grid-align {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  width: 100%;
+  margin-top: 32px;
+  align-items: start;
+}
+
+.badge-featured {
+  grid-row: 2 / span 2;   /* Start on the second row */
+  grid-column: 1 / 2;
+  width: 200%;
+  height: 200%;
+  max-width: 700px;
+  max-height: 700px;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+
+.badge-grid-align img:not(.badge-featured) {
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+
+/* Responsive: stack on mobile */
+@media (max-width: 900px) {
+  .badge-grid-align {
+    grid-template-columns: 1fr;
+  }
+  .badge-featured {
+    grid-row: auto;
+    grid-column: auto;
+    max-width: 100%;
+    max-height: 400px;
+  }
+}
+
+.small-gif {
+  width: 200px;   /* or your desired width */
+  height: auto;   /* keeps aspect ratio */
+}
